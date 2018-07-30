@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
@@ -31,11 +35,35 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView locationView = (TextView)listItemView.findViewById(R.id.location);
         locationView.setText(currentEarthquake.getmLocation());
 
+        Date dateObject = new Date(currentEarthquake.getmTimeInMilliseconds());
+
+
         TextView dateView = (TextView)listItemView.findViewById(R.id.date);
-        dateView.setText(currentEarthquake.getmDate());
+        String fortmatedDate = formatDate(dateObject);
+
+        dateView.setText(fortmatedDate);
+
+        TextView timeView = (TextView)listItemView.findViewById(R.id.time);
+        String fortmatedTime = formatTime(dateObject);
+        timeView.setText(fortmatedTime);
 
         return listItemView;
 
+    }
+    /**
+     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+     */
+    private String formatDate(Date dateObject) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    /**
+     * Return the formatted date string (i.e. "4:30 PM") from a Date object.
+     */
+    private String formatTime(Date dateObject) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        return timeFormat.format(dateObject);
     }
 }
 
