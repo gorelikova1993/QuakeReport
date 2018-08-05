@@ -35,8 +35,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
                     R.layout.earthquake_list_item, parent, false);
         }
 
-
-
         Earthquake currentEarthquake = getItem(position);
         TextView magnitudeText = (TextView)listItemView.findViewById(R.id.magnitude);
         DecimalFormat formatter = new DecimalFormat("0.0");
